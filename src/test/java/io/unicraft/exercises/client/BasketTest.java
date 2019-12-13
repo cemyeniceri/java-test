@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Map;
 
 import static io.unicraft.exercises.client.model.ProductRepository.*;
@@ -40,9 +42,41 @@ public class BasketTest {
     }
 
     @Test
-    public void shouldCalculateWithoutDiscount() {
+    public void shouldCalculateWithoutDiscountWhenDiscountlessProductsSelected() {
         basket.addProduct(MILK, 5);
         BigDecimal price = basket.calculateTotalPrice();
-        Assert.assertEquals(MILK.getPrice().multiply(BigDecimal.valueOf(5)), price);
+        Assert.assertEquals(BigDecimal.valueOf(6.5), price);
+    }
+
+    @Test
+    public void shouldCalculateApplesWithoutDiscountWhenShoppingDateEarly() {
+        basket.setShoppingDate(LocalDate.now());
+        basket.addProduct(APPLE, 3);
+        BigDecimal price = basket.calculateTotalPrice();
+        Assert.assertEquals(BigDecimal.valueOf(0.3), price);
+    }
+
+    @Test
+    public void shouldCalculateApplesWithoutDiscountWhenShoppingDateLate() {
+        basket.setShoppingDate(LocalDate.now().plusMonths(2));
+        basket.addProduct(APPLE, 3);
+        BigDecimal price = basket.calculateTotalPrice();
+        Assert.assertEquals(BigDecimal.valueOf(0.3), price);
+    }
+
+    @Test
+    public void shouldCalculateApplesWithDiscountWhenShoppingDateAtStartDate() {
+        basket.setShoppingDate(LocalDate.now().plusDays(3));
+        basket.addProduct(APPLE, 3);
+        BigDecimal price = basket.calculateTotalPrice();
+        Assert.assertEquals(BigDecimal.valueOf(0.27), price);
+    }
+
+    @Test
+    public void shouldCalculateApplesWithDiscountWhenShoppingDateAtEndDate() {
+        basket.setShoppingDate(LocalDate.now().plusMonths(1).with(TemporalAdjusters.lastDayOfMonth()));
+        basket.addProduct(APPLE, 3);
+        BigDecimal price = basket.calculateTotalPrice();
+        Assert.assertEquals(BigDecimal.valueOf(0.27), price);
     }
 }

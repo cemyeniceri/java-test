@@ -6,6 +6,8 @@ import io.unicraft.exercises.client.menu.MenuHelper;
 import io.unicraft.exercises.client.menu.ProductMenuConstants;
 import io.unicraft.exercises.client.model.ProductRepository;
 
+import java.time.LocalDate;
+
 import static io.unicraft.exercises.client.menu.MenuHelper.executeMenu;
 
 public class App {
@@ -20,14 +22,10 @@ public class App {
         while (true) {
             switch (executeMenu(MainMenuConstants.mainMenu, "Main Menu")) {
                 case MainMenuConstants.CREATE_NEW_BASKET:
-                    basket = new Basket();
-                    executeBasketMenu();
+                    executeBasketMenuWithNewBasket();
                     break;
                 case MainMenuConstants.CONTINUE_WITH_OLD_BASKET:
-                    if (basket != null)
-                        executeBasketMenu();
-                    else
-                        System.out.println("You do not have any basket! Please create one.");
+                    executeBasketMenu();
                     break;
                 case MainMenuConstants.EXIT_FROM_APP:
                     System.out.println("Thanks for using application.");
@@ -38,14 +36,27 @@ public class App {
         }
     }
 
+    private static void executeBasketMenuWithNewBasket() {
+        LocalDate shoppingDate = MenuHelper.askForDate("Enter shopping date");
+        if (shoppingDate != null) {
+            basket = new Basket();
+            basket.setShoppingDate(shoppingDate);
+            executeBasketMenu();
+        }
+    }
+
     private static void executeBasketMenu() {
+        if (basket == null) {
+            System.out.println("You do not have any basket! Please create one.");
+            return;
+        }
         while (true) {
             switch (executeMenu(BasketMenuConstants.basketMenu, "Basket Menu")) {
                 case BasketMenuConstants.ADD_PRODUCT_TO_BASKET:
                     executeAddProductMenu();
                     break;
                 case BasketMenuConstants.DISPLAY_BASKET:
-                    System.out.println(basket.getProductCountMap());
+                    basket.printDetails();
                     break;
                 case BasketMenuConstants.DISPLAY_PRICE:
                     System.out.println("Price is : " + basket.calculateTotalPrice());
