@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 import static io.unicraft.exercises.client.model.ProductRepository.*;
@@ -36,5 +37,12 @@ public class BasketTest {
         Assert.assertEquals(3, productCountMap.size());
         basket.clearProductMap();
         Assert.assertEquals(0, productCountMap.size());
+    }
+
+    @Test
+    public void shouldCalculateWithoutDiscount() {
+        basket.addProduct(MILK, 5);
+        BigDecimal price = basket.calculateTotalPrice();
+        Assert.assertEquals(MILK.getPrice().multiply(BigDecimal.valueOf(5)), price);
     }
 }

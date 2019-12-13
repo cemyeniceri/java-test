@@ -2,6 +2,7 @@ package io.unicraft.exercises.client;
 
 import io.unicraft.exercises.client.model.ProductRepository;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,5 +35,13 @@ public class Basket {
 
     public void clearProductMap() {
         productCountMap.clear();
+    }
+
+    public BigDecimal calculateTotalPrice() {
+        BigDecimal price = BigDecimal.ZERO;
+        for (Map.Entry<ProductRepository, Integer> productCountPair : productCountMap.entrySet()) {
+            price = price.add(productCountPair.getKey().getPrice().multiply(new BigDecimal(productCountPair.getValue())));
+        }
+        return price;
     }
 }

@@ -48,8 +48,7 @@ public class App {
                     System.out.println(basket.getProductCountMap());
                     break;
                 case BasketMenuConstants.DISPLAY_PRICE:
-                    // TODO : Implement calculation logic to display price
-                    System.out.println("Price is not implemented yet");
+                    System.out.println("Price is : " + basket.calculateTotalPrice());
                     break;
                 case BasketMenuConstants.CLEAR_BASKET:
                     if (MenuHelper.askForConfirmation("Do you want to clear basket?") == 2) {
