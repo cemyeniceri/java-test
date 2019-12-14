@@ -1,4 +1,4 @@
-package io.unicraft.exercises.client.model;
+package io.unicraft.exercises.models;
 
 import java.math.BigDecimal;
 

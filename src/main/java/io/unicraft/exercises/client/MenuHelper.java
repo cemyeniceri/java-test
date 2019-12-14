@@ -1,4 +1,4 @@
-package io.unicraft.exercises.client.menu;
+package io.unicraft.exercises.client;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

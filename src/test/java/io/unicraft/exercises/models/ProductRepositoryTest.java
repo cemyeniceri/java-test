@@ -1,8 +1,8 @@
-package io.unicraft.exercises.client.model;
+package io.unicraft.exercises.models;
 
 import org.junit.Test;
 
-import static io.unicraft.exercises.client.model.ProductRepository.*;
+import static io.unicraft.exercises.models.ProductRepository.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 

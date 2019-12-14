@@ -1,11 +1,11 @@
-package io.unicraft.exercises.client.menu;
+package io.unicraft.exercises.client.constants;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainMenuConstants {
+public class MainMenuConstant {
 
-    private MainMenuConstants() {
+    private MainMenuConstant() {
     }
 
     public static final int CREATE_NEW_BASKET = 1;

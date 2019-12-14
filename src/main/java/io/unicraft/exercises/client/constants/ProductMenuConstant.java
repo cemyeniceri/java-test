@@ -1,13 +1,13 @@
-package io.unicraft.exercises.client.menu;
+package io.unicraft.exercises.client.constants;
 
-import io.unicraft.exercises.client.model.ProductRepository;
+import io.unicraft.exercises.models.ProductRepository;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProductMenuConstants {
+public class ProductMenuConstant {
 
-    private ProductMenuConstants() {
+    private ProductMenuConstant() {
     }
 
     public static final int BACK_TO_BASKET_MENU_NUMBER = ProductRepository.values().length + 1;

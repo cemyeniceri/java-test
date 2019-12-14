@@ -1,11 +1,11 @@
-package io.unicraft.exercises.client.menu;
+package io.unicraft.exercises.client.constants;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class BasketMenuConstants {
+public class BasketMenuConstant {
 
-    private BasketMenuConstants() {
+    private BasketMenuConstant() {
     }
 
     public static final int ADD_PRODUCT_TO_BASKET = 1;
