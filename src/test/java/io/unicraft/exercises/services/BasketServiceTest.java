@@ -91,6 +91,7 @@ public class BasketServiceTest {
         basketService.addProduct(APPLE, 3);
         SalesSlip slip = basketService.calculateTotalPrice();
         assertEquals(BigDecimal.valueOf(0.27).setScale(2, RoundingMode.CEILING), slip.getTotalPrice());
+        assertEquals(BigDecimal.valueOf(0.03).setScale(2, RoundingMode.CEILING), slip.getDiscountPrice());
     }
 
     @Test
@@ -99,6 +100,8 @@ public class BasketServiceTest {
         basketService.addProduct(APPLE, 3);
         SalesSlip slip = basketService.calculateTotalPrice();
         assertEquals(BigDecimal.valueOf(0.27).setScale(2, RoundingMode.CEILING), slip.getTotalPrice());
+        assertEquals(BigDecimal.valueOf(0.03).setScale(2, RoundingMode.CEILING), slip.getDiscountPrice());
+
     }
 
     @Test
@@ -133,6 +136,8 @@ public class BasketServiceTest {
         basketService.addProduct(SOUP, 3);
         SalesSlip slip = basketService.calculateTotalPrice();
         assertEquals(BigDecimal.valueOf(2.35).setScale(2, RoundingMode.CEILING), slip.getTotalPrice());
+        assertEquals(BigDecimal.valueOf(0.40).setScale(2, RoundingMode.CEILING), slip.getDiscountPrice());
+
     }
 
     @Test
@@ -142,6 +147,7 @@ public class BasketServiceTest {
         basketService.addProduct(SOUP, 3);
         SalesSlip slip = basketService.calculateTotalPrice();
         assertEquals(BigDecimal.valueOf(2.35).setScale(2, RoundingMode.CEILING), slip.getTotalPrice());
+        assertEquals(BigDecimal.valueOf(0.40).setScale(2, RoundingMode.CEILING), slip.getDiscountPrice());
     }
 
     @Test
@@ -151,6 +157,7 @@ public class BasketServiceTest {
         basketService.addProduct(SOUP, 10);
         SalesSlip slip = basketService.calculateTotalPrice();
         assertEquals(BigDecimal.valueOf(7.30).setScale(2, RoundingMode.CEILING), slip.getTotalPrice());
+        assertEquals(BigDecimal.valueOf(0.80).setScale(2, RoundingMode.CEILING), slip.getDiscountPrice());
     }
 
     @Test
@@ -162,5 +169,6 @@ public class BasketServiceTest {
         basketService.addProduct(APPLE, 7);
         SalesSlip slip = basketService.calculateTotalPrice();
         assertEquals(BigDecimal.valueOf(14.43).setScale(2, RoundingMode.CEILING), slip.getTotalPrice());
+        assertEquals(BigDecimal.valueOf(0.87).setScale(2, RoundingMode.CEILING), slip.getDiscountPrice());
     }
 }
